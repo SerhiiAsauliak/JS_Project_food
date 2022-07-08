@@ -101,7 +101,7 @@ function openModal() {
       modalWindow.classList.add('show');
       modalWindow.classList.remove('hide');
       document.body.style.overflow = 'hidden';
-      clearInterval(modalTimeOut);
+      // clearInterval(modalTimeOut);
 }
 function closeModal() {
    modalWindow.classList.remove('show');
@@ -205,4 +205,49 @@ class MenuItem {
       'menu__item'
    ).render();
 
+// Sending forms
+
+const forms = document.querySelectorAll('form');
+const formMessages = {
+   loading: 'Loading...',
+   success: 'Operation completed!',
+   error : 'Something get wrong...'
+};
+forms.forEach(el => {
+   postData(el);
 });
+
+function postData(form) {
+   form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const statusMessage = document.createElement('div');
+      statusMessage.textContent = formMessages.loading;
+      form.append(statusMessage);
+
+      const request = new XMLHttpRequest();
+      request.open('POST', 'server.php');
+      request.setRequestHeader('Content-type', 'application/json');
+      const formData = new FormData(form);
+      const object = {};
+      formData.forEach((value, key) => {
+         object[key] = value;
+      });
+      const json = JSON.stringify(object);
+      request.send(json);
+      request.addEventListener('load', () => {
+         if(request.status === 200){
+            console.log(request.response);
+            statusMessage.textContent = formMessages.success;
+            form.reset();
+            setTimeout(() => {
+               statusMessage.remove();
+            },2000);
+         }else{
+            statusMessage.textContent = formMessages.error;
+         }
+      });
+   });
+}
+
+});
+
