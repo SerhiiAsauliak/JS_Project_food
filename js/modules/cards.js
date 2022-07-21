@@ -58,7 +58,7 @@ function cards() {
          <div class="menu__item-divider"></div>
          <div class="menu__item-price">
             <div class="menu__item-cost">Цена:</div>
-            <div class="menu__item-total"><span>${price}</span> грн/день</div>
+            <div class="menu__item-total"><span>${price * 35 }</span> грн/день</div>
          </div>
       `;
          document.querySelector('.menu__field .container').append(elem);

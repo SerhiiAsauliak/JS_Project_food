@@ -1,5 +1,5 @@
 {
-  "name": "project_food",
+  "name": "food",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,9 +8,19 @@
   },
   "author": "",
   "license": "ISC",
+  "browserslist": [
+    "> 1%",
+    "not dead"
+  ],
   "devDependencies": {
-    "json-server": "^0.17.0",
-    "webpack": "^5.73.0",
-    "webpack-cli": "^4.10.0"
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "babel-loader": "^8.2.5",
+    "core-js": "^3.6.5",
+    "formdata-polyfill": "^4.0.10",
+    "json-server": "^0.16.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "whatwg-fetch": "^3.6.2"
   }
 }

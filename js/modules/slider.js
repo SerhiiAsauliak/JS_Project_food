@@ -51,7 +51,7 @@ function slider({container, slideItem, prevSlide, nextSlide, totalCounter, currC
       margin-left: 15%;
       list-style: none;
       `;
-   slideContainer.append(indicators);
+   slideContainer.appendChild(indicators);
 
    for (let i = 0; i < slide.length; i++) {
       const dot = document.createElement('li');
@@ -74,7 +74,7 @@ function slider({container, slideItem, prevSlide, nextSlide, totalCounter, currC
       if (i == 0) {
          dot.style.opacity = 1;
       }
-      indicators.append(dot);
+      indicators.appendChild(dot);
       dotsArr.push(dot);
    }
    function dleteNoDigits(str) {
@@ -117,36 +117,12 @@ function slider({container, slideItem, prevSlide, nextSlide, totalCounter, currC
       dot.addEventListener('click', (e) => {
          const slideTo = e.target.getAttribute('data-slide-to');
          currIndex = slideTo;
+         currentSliderId.innerHTML = addZero(currIndex);
          offset = dleteNoDigits(width) * (slideTo - 1);
          slidesField.style.transform = `translateX(-${offset}px)`;
          lightCurrDot();
       });
    });
-
-   //Slider realization variant 2:
-   // showSlide(currIndex);
-
-   // function showSlide(n) {
-   //    if (n > slide.length) {
-   //       currIndex = 1;
-   //    }
-   //    if (n < 1) {
-   //       currIndex = slide.length;
-   //    }
-   //    currentSliderId.innerHTML = addZero(currIndex);
-   //    slide.forEach(el => el.style.display = 'none');
-   //    slide[currIndex - 1].style.display = 'block';
-   // }
-   // function plusSlides(n) {
-   //    showSlide(currIndex += n);
-   // }
-   // prevBtn.addEventListener('click', () => {
-   //    plusSlides(-1);
-   // });
-
-   // nextBtn.addEventListener('click', () => {
-   //    plusSlides(1);
-   // });
 }
 
 export default slider;

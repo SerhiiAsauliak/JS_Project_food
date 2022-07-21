@@ -25,7 +25,10 @@ function forms(formSelector, modalTimeOut) {
       `;
          form.insertAdjacentElement('afterend', statusMessage);
          const formData = new FormData(form);
-         const json = JSON.stringify(Object.fromEntries(formData.entries()));
+         let obj = {};             
+         formData.forEach((value, key) => { obj[key] = value;});             
+         let json = JSON.stringify(obj);
+         // const json = JSON.stringify(Object.fromEntries(formData.entries()));
 
          postData('http://localhost:3000/requests', json)
             .then(data => {
@@ -54,7 +57,7 @@ function forms(formSelector, modalTimeOut) {
       <div class="modal__title">${message}</div>   
    </div>
    `;
-      document.querySelector('.modal').append(thanksModal);
+      document.querySelector('.modal').appendChild(thanksModal);
       setTimeout(() => {
          thanksModal.remove();
          prevModalDialog.classList.add('show');

@@ -3,7 +3,6 @@ function openModal(modalSelector, modalTimeOut) {
    modalWindow.classList.add('show');
    modalWindow.classList.remove('hide');
    document.body.style.overflow = 'hidden';
-   console.log(modalTimeOut);
    if(modalTimeOut){
       clearInterval(modalTimeOut);
    }
